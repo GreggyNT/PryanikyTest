@@ -1,0 +1,6 @@
+@PryanikyTest_HostAddress = http://localhost:5206
+
+GET {{PryanikyTest_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

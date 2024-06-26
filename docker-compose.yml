@@ -1,0 +1,6 @@
+﻿services:
+  pryanikytest:
+    image: pryanikytest
+    build:
+      context: .
+      dockerfile: PryanikyTest/Dockerfile
