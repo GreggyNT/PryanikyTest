@@ -1,4 +1,5 @@
-﻿using DataAccess.Models;
+﻿
+using DataAccess.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -20,7 +21,7 @@ public class OrderEntityTypeConfiguration : IEntityTypeConfiguration<Order>
         (
             new Order
             {
-                Id = 1, OrderDate = new DateTime(2024, 6, 30).ToUniversalTime(), OrderSum = 1000, Status = "Создан"
+                Id = 1, OrderDate = new DateTime(2024, 6, 30).ToUniversalTime(), OrderSum = 1000, Status ="Завершен"
             }
         );
     }
