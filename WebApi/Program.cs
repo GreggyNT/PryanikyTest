@@ -1,5 +1,5 @@
-
 using Core.Validators;
+using DataAccess;
 using FluentValidation;
 using SharpGrip.FluentValidation.AutoValidation.Mvc.Extensions;
 
@@ -17,6 +17,8 @@ builder.Services.AddValidatorsFromAssemblyContaining<UpdateProductRequestValidat
 
 builder.Services.AddFluentValidationAutoValidation();
 
+builder.Services.AddCors();
+builder.Services.AddDbContext<PryanikiDbContext>();
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
