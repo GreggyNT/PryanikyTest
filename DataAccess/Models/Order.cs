@@ -1,5 +1,7 @@
 
 
+using DataAccess.Enums;
+
 namespace DataAccess.Models;
 
 public class Order:BaseModel
@@ -8,7 +10,7 @@ public class Order:BaseModel
     
     public DateTime OrderDate { get; set; }
     
-    public string Status { get; set; }
+    public OrderStatus Status { get; set; }
     
     public ICollection<OrderItem> OrderItems { get; set; }
 }

@@ -12,7 +12,7 @@ public class ProductRepository(PryanikiDbContext context):AbstractRepository<Pro
 
     public async Task<IEnumerable<Product>?> GetProductsByName(CancellationToken token,string name)
     {
-        var result = _context.Products.Select(x => x).Where(x => x.Name == name);
+        var result = _context.Products.Select(x => x).Where(x => x.Name.Contains(name));
         if (!result.Any()) return null;
         return await result.ToListAsync(token);
     }
@@ -20,6 +20,6 @@ public class ProductRepository(PryanikiDbContext context):AbstractRepository<Pro
     {
         var result = await _context.OrderItems.Select(item => item).Where(x => x.OrderId == id).Select(x=>x.ProductId).ToListAsync(cancellationToken: token);
         if (result.Count==0) return null;
-        return await _context.Products.Select(x => x).Where(x => result.Contains(x.Id)).ToListAsync();
+        return await _context.Products.Select(x => x).Where(x => result.Contains(x.Id)).ToListAsync(token);
     }
 }
