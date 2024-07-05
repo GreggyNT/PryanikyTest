@@ -1,5 +1,4 @@
-﻿
-using DataAccess.Models;
+﻿using DataAccess.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -12,7 +11,7 @@ public class OrderEntityTypeConfiguration : IEntityTypeConfiguration<Order>
         builder.HasKey(o => o.Id);
         builder.ToTable("Orders");
         builder.Property(o => o.OrderDate).IsRequired().HasColumnType("TIMESTAMPTZ").HasDefaultValueSql("NOW()");
-        builder.Property(o => o.Status).IsRequired().HasMaxLength(255);
+        builder.Property(o => o.Status).IsRequired().HasMaxLength(16);
         builder.Property(o => o.OrderSum).IsRequired();
         
         builder.HasMany(o => o.OrderItems).WithOne(oi => oi.Order).HasForeignKey(oi => oi.OrderId).OnDelete(DeleteBehavior.Cascade);
