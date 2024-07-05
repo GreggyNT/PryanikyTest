@@ -10,7 +10,7 @@ public class ProductRepository(PryanikiDbContext context):AbstractRepository<Pro
     public async Task<IEnumerable<Product>?> GetProductsAsync(CancellationToken token)
         => await _context.Products.ToListAsync(cancellationToken: token);
 
-    public async Task<IEnumerable<Product>?> GetProductsByName(CancellationToken token,string name)
+    public async Task<IEnumerable<Product>?> GetProductsByNameAsync(CancellationToken token,string name)
     {
         var result = _context.Products.Select(x => x).Where(x => x.Name.Contains(name));
         if (!result.Any()) return null;

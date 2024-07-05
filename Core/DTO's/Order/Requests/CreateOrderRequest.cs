@@ -3,5 +3,5 @@
 public record CreateOrderRequest(
     double OrderSum,
     DateTime OrderDate,
-    string Status
+    int Status
 );

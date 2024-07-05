@@ -8,7 +8,7 @@ public abstract class AbstractRepository<T>(PryanikiDbContext context) : IAbstra
 {
     private readonly PryanikiDbContext context = context;
 
-    public async Task<T?> GetByIdAsync(long id, CancellationToken token)
+    public virtual async Task<T?> GetByIdAsync(long id, CancellationToken token)
     {
         return await context.FindAsync<T>(id, token);
     }
@@ -29,13 +29,14 @@ public abstract class AbstractRepository<T>(PryanikiDbContext context) : IAbstra
         }
     }
 
-    public virtual async Task<T?> UpdateAsync(T entity, CancellationToken token)
+    public virtual async Task<bool?> UpdateAsync(T entity, CancellationToken token)
     {
         var ent = await context.FindAsync<T>(entity.Id, token);
-        if (ent == null) return null;
+        if (ent == null) return false;
         context.Update(entity);
         await context.SaveChangesAsync(token);
-        return entity;
+        ent =await context.FindAsync<T>(entity.Id, token);
+        return entity==ent;
     }
 
 }

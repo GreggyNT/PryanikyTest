@@ -3,7 +3,7 @@ using DataAccess.Models;
 
 namespace DataAccess.Repositories.Interfaces;
 
-public interface IOrderRepository
+public interface IOrderRepository:IAbstractRepository<Order>
 {
     Task<IEnumerable<Order>?> GetOrdersAsync(CancellationToken token);
     
